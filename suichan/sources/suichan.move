@@ -26,12 +26,12 @@ module suichan::suichan{
 
     struct PostEvent has copy, drop { id: ID }
 
-    fun init(ctx: &mut TxContext) {
+    public entry fun create_board(ctx: &mut TxContext) {
         transfer::transfer(
-            BoardOwnerCapability {
-                id: object::new(ctx),
-            }, 
-            tx_context::sender(ctx));
+        BoardOwnerCapability {
+            id: object::new(ctx),
+        }, 
+        tx_context::sender(ctx));
 
         let board = Board {
             id: object::new(ctx),
